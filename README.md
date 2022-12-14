@@ -1,5 +1,5 @@
 # CoinCapApi
-![CoinCap Logo](https://raw.githubusercontent.com/ByronAP/CoinCapApi/coincap-logo-banner-256x64.png)
+![CoinCap Logo](https://raw.githubusercontent.com/ByronAP/CoinCapApi/dev/coincap-logo-banner-256x64.png)
 ## CoinCap API Library for .NET
 
 [![Nuget](https://img.shields.io/nuget/v/CoinCapAPI)](https://www.nuget.org/packages/CoinCapAPI)
