@@ -13,12 +13,12 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "main", "dev" ]
+    branches: [ "dev", main ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "main", "dev" ]
+    branches: [ "dev" ]
   schedule:
-    - cron: '28 11 * * 1'
+    - cron: '20 16 * * 2'
 
 jobs:
   analyze:
@@ -34,8 +34,6 @@ jobs:
       matrix:
         language: [ 'csharp' ]
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
-        # Use only 'java' to analyze code written in Java, Kotlin or both
-        # Use only 'javascript' to analyze code written in JavaScript, TypeScript or both
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:

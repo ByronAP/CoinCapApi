@@ -1,0 +1,29 @@
+name: Build and Publish
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Decode the Signing Key
+        id: write_sign_key_file
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.SIGNING_KEY }}
+        run: |
+          echo $CERTIFICATE_BASE64 | base64 --decode > keyPair.snk
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        env:
+          SignAssembly: true
+          AssemblyOriginatorKeyFile: ${{ steps.write_sign_key_file.outputs.filePath }}
+        run: |
+          dotnet build --no-restore --configuration Release
+      - name: Publish
+        run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_PUB_KEY}}
