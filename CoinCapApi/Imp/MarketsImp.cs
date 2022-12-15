@@ -49,6 +49,7 @@ namespace CoinCapApi.Imp
         /// <param name="assetId">Filters by all markets containing id (base and quote).</param>
         /// <param name="limit">The number of items to retrieve. Default: 100 Max: 2000.</param>
         /// <param name="offset">The number of items to skip (aka offset).</param>
+        /// <seealso href="https://docs.coincap.io/#d8fd6001-e127-448d-aadd-bfbfe2c89dbe"/>
         /// <returns>A Task&lt;<see cref="MarketsResponse"/>&gt; representing the asynchronous operation.</returns>
         public async Task<MarketsResponse> GetMarketsAsync(string exchangeId = null, string baseSymbol = null, string quoteSymbol = null, string baseId = null, string quoteId = null, string assetSymbol = null, string assetId = null, uint limit = 100, uint offset = 0)
         {

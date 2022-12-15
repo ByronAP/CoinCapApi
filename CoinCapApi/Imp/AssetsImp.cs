@@ -67,7 +67,7 @@ namespace CoinCapApi.Imp
         /// <summary>Get an asset by id as an asynchronous operation.</summary>
         /// <param name="id">The unique identifier of the asset.</param>
         /// <seealso href="https://docs.coincap.io/#f8869879-171f-4240-adfd-dd2947506adc"/>
-        /// <returns>A Task&lt;AssetResponse&gt; representing the asynchronous operation.</returns>
+        /// <returns>A Task&lt;<see cref="AssetResponse"/>&gt; representing the asynchronous operation.</returns>
         /// <exception cref="System.ArgumentNullException">id - Null or invalid value, id must be a valid asset id.</exception>
         public async Task<AssetResponse> GetAssetAsync(string id)
         {
