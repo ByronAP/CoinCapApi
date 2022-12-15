@@ -21,6 +21,17 @@ using System.Threading.Tasks;
 
 namespace CoinCapApi
 {
+    /// <summary>
+    /// <para>Create an instance of this class to access the API methods.</para>
+    /// <para>
+    /// Methods and parameters are named as specified in the official
+    /// CoinCap API documentation (Ex: API call '/rates/{id}' 
+    /// translates to 'CoinCapClient.Rates.GetRateAsync({id})').
+    /// </para>
+    /// <para>By default response caching is enabled. To disable it set <see cref="IsCacheEnabled"/> to <c>false</c>.</para>
+    /// Implements the <see cref="IDisposable" />
+    /// </summary>
+    /// <seealso cref="IDisposable" />
     public class CoinCapClient : IDisposable
     {
         /// <summary>
@@ -30,7 +41,40 @@ namespace CoinCapApi
         /// <value>The RestSharp client instance.</value>
         public RestClient CCRestClient { get; }
 
+        /// <summary>
+        /// <para>Provides access to the Assets API calls.</para>
+        /// An instance of <see cref="AssetsImp"/>.
+        /// </summary>
+        /// <value>Assets API calls.</value>
         public AssetsImp Assets { get; }
+
+        /// <summary>
+        /// <para>Provides access to the Rates API calls.</para>
+        /// An instance of <see cref="RatesImp"/>.
+        /// </summary>
+        /// <value>Rates API calls.</value>
+        public RatesImp Rates { get; }
+
+        /// <summary>
+        /// <para>Provides access to the Exchanges API calls.</para>
+        /// An instance of <see cref="ExchangesImp"/>.
+        /// </summary>
+        /// <value>Exchanges API calls.</value>
+        public ExchangesImp Exchanges { get; }
+
+        /// <summary>
+        /// <para>Provides access to the Markets API calls.</para>
+        /// An instance of <see cref="MarketsImp"/>.
+        /// </summary>
+        /// <value>Markets API calls.</value>
+        public MarketsImp Markets { get; }
+
+        /// <summary>
+        /// <para>Provides access to the Candles API calls.</para>
+        /// An instance of <see cref="CandlesImp"/>.
+        /// </summary>
+        /// <value>Candles API calls.</value>
+        public CandlesImp Candles { get; }
 
         /// <summary>
         /// <para>Gets or sets whether this instance is using response caching.</para>
@@ -67,6 +111,10 @@ namespace CoinCapApi
             CCRestClient.AddDefaultHeader("User-Agent", $"CoinCapApi .NET Client/{Assembly.GetExecutingAssembly().GetName().Version}");
 
             Assets = new AssetsImp(CCRestClient, _cache, _logger);
+            Rates = new RatesImp(CCRestClient, _cache, _logger);
+            Exchanges = new ExchangesImp(CCRestClient, _cache, _logger);
+            Markets = new MarketsImp(CCRestClient, _cache, _logger);
+            Candles = new CandlesImp(CCRestClient, _cache, _logger);
         }
 
         /// <summary>
@@ -111,10 +159,6 @@ namespace CoinCapApi
             }
             catch (Exception ex)
             {
-                if (ex.Message.ToLowerInvariant().Contains("toomanyrequests"))
-                {
-                    //logger?.LogError("API requests rate limited at the server for the next {RateLimitRefreshSeconds} seconds.", Constants.API_RATE_LIMIT_RESET_MS / 1000);
-                }
                 logger?.LogError(ex, "GetStringResponseAsync request failure.");
                 throw;
             }
