@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/CoinCapAPI" # Location of package manifests
+    directory: "/CoinCapApi" # Location of package manifests
     schedule:
       interval: "weekly"
 
