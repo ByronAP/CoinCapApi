@@ -2,7 +2,7 @@
 
 namespace CoinCapApi.Models
 {
-    public partial class AssetHistoryResponse
+    public class AssetHistoryResponse
     {
         [JsonProperty("data")]
         public AssetHistoryData[] Data { get; set; }

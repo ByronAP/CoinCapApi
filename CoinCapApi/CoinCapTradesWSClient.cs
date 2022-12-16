@@ -163,9 +163,6 @@ namespace CoinCapApi
             }
         }
 
-        public void Dispose()
-        {
-            ((IDisposable)CCWebSocket).Dispose();
-        }
+        public void Dispose() => CCWebSocket.Dispose();
     }
 }
