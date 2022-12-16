@@ -50,6 +50,7 @@ namespace CoinCapApi
         public Guid InstanceID => CCWebSocket.InstanceId;
 
         private readonly ILogger<CoinCapPricesWSClient> _logger;
+        private bool _disposedValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoinCapPricesWSClient"/> class.
@@ -158,6 +159,34 @@ namespace CoinCapApi
             }
         }
 
-        public void Dispose() => CCWebSocket.Dispose();
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    if (CCWebSocket != null)
+                    {
+                        try
+                        {
+                            CCWebSocket.Dispose();
+                        }
+                        catch
+                        {
+                            // ignore
+                        }
+                    }
+                }
+
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

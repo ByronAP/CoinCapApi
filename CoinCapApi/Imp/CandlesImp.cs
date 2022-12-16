@@ -64,7 +64,7 @@ namespace CoinCapApi.Imp
 
             if (start > 0 && end == 0 || end > 0 && start == 0) { throw new ArgumentOutOfRangeException("Invalid start/end values, start and end must both be valid timestamps."); }
             if (start > 0 && end <= start) { throw new ArgumentOutOfRangeException(nameof(end), "Invalid value, end must be a valid timestamp greater than start."); }
-            if (start > 0 && end > 0 & (long)start > DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()) { throw new ArgumentOutOfRangeException(nameof(start), "Invalid value, start must be in the past."); }
+            if (start > 0 && end > 0 && (long)start > DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()) { throw new ArgumentOutOfRangeException(nameof(start), "Invalid value, start must be in the past."); }
 
             var request = new RestRequest(CoinCapClient.BuildUrl("candles"));
             request.AddQueryParameter("exchangeId", exchangeId);
