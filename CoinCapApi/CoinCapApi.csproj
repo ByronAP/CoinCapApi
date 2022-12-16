@@ -4,10 +4,10 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.0.1</Version>
+    <Version>2.0.1.1</Version>
     <Authors>ByronAP</Authors>
-    <AssemblyVersion>2.0.0.1</AssemblyVersion>
-    <FileVersion>2.0.0.1</FileVersion>
+    <AssemblyVersion>2.0.1.1</AssemblyVersion>
+    <FileVersion>2.0.1.1</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <AnalysisLevel>latest-recommended</AnalysisLevel>
@@ -19,7 +19,7 @@
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © 2022 ByronAP, CoinCap. All rights reserved.</Copyright>
     <PackageReleaseNotes>See: https://github.com/ByronAP/CoinGeckoApi/releases </PackageReleaseNotes>
-    <PackageTags>coincap,coincap.io-api,coincap-api,api,bitcoin,eth,etherium,atom,cosmos,btc,usdt,teather,bnb,usdc,doge,dogecoin,xrp,ripple,ltc,litecoin,crypto,market,price,market-cap,cryptocurrencies,marketcap</PackageTags>
+    <PackageTags>coincap,coincap.io-api,coincap-api,api,bitcoin,eth,etherium,atom,cosmos,btc,usdt,tether,bnb,usdc,doge,dogecoin,xrp,ripple,ltc,litecoin,crypto,market,price,market-cap,cryptocurrencies,marketcap,netstandard</PackageTags>
     <Description>CoinCap API Client Library</Description>
     <Title>CoinCap API Client Library</Title>
   </PropertyGroup>
