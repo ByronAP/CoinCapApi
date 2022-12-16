@@ -15,4 +15,14 @@
 
 ### Features
 
-+  TODO
++   Supports all API calls
++   Supports WebSocket API
++   Method names and locations match API
++   Concrete classes
++   Fully asynchronous
++   Compatible with dependency injection and logging
++   Integrated response caching
++   Easier to use then other libraries
+
+
+Just create an instance of 'CoinCapClient' and start making calls.
