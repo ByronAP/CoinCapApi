@@ -50,7 +50,7 @@ namespace CoinCapApi
         public Guid InstanceID => CCWebSocket.InstanceId;
 
         private readonly ILogger<CoinCapPricesWSClient> _logger;
-        private readonly IEnumerable<string> _assets;
+        private bool _disposedValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoinCapPricesWSClient"/> class.
@@ -59,11 +59,9 @@ namespace CoinCapApi
         /// <param name="options">The WebSocketClient options.</param>
         public CoinCapPricesWSClient(IEnumerable<string> assets, WebSocketOptions options)
         {
-            _assets = assets;
-
             if (options.Logger != null) { _logger = (ILogger<CoinCapPricesWSClient>)options.Logger; }
 
-            if (string.IsNullOrEmpty(options.Url) || string.IsNullOrWhiteSpace(options.Url)) { options.Url = $"{Constants.API_WS_BASE_URL}/prices?assets={string.Join(",", _assets)}"; }
+            if (string.IsNullOrEmpty(options.Url) || string.IsNullOrWhiteSpace(options.Url)) { options.Url = $"{Constants.API_WS_BASE_URL}/prices?assets={string.Join(",", assets)}"; }
 
             CCWebSocket = new WebSocketClient(options);
 
@@ -77,8 +75,6 @@ namespace CoinCapApi
         /// <param name="logger">The logger.</param>
         public CoinCapPricesWSClient(IEnumerable<string> assets, ILogger<CoinCapPricesWSClient> logger = null)
         {
-            _assets = assets;
-
             _logger = logger;
 
             var options = new WebSocketOptions($"{Constants.API_WS_BASE_URL}/prices?assets={string.Join(",", assets)}");
@@ -163,9 +159,34 @@ namespace CoinCapApi
             }
         }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    if (CCWebSocket != null)
+                    {
+                        try
+                        {
+                            CCWebSocket.Dispose();
+                        }
+                        catch
+                        {
+                            // ignore
+                        }
+                    }
+                }
+
+                _disposedValue = true;
+            }
+        }
+
         public void Dispose()
         {
-            ((IDisposable)CCWebSocket).Dispose();
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

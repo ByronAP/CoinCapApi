@@ -85,7 +85,6 @@ namespace CoinCapApi
 
         private readonly MemCache _cache;
         private bool _disposedValue;
-        private readonly ILogger<CoinCapClient> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoinCapClient"/> class.
@@ -96,8 +95,7 @@ namespace CoinCapApi
         /// <param name="logger">Your logger.</param>
         public CoinCapClient(string apiKey = null, ILogger<CoinCapClient> logger = null)
         {
-            _logger = logger;
-            _cache = new MemCache(_logger);
+            _cache = new MemCache(logger);
 
             CCRestClient = new RestClient(Constants.API_BASE_URL);
             if (!string.IsNullOrEmpty(apiKey) && !String.IsNullOrWhiteSpace(apiKey))
@@ -110,11 +108,11 @@ namespace CoinCapApi
             CCRestClient.AddDefaultHeader("Connection", "keep-alive");
             CCRestClient.AddDefaultHeader("User-Agent", $"CoinCapApi .NET Client/{Assembly.GetExecutingAssembly().GetName().Version}");
 
-            Assets = new AssetsImp(CCRestClient, _cache, _logger);
-            Rates = new RatesImp(CCRestClient, _cache, _logger);
-            Exchanges = new ExchangesImp(CCRestClient, _cache, _logger);
-            Markets = new MarketsImp(CCRestClient, _cache, _logger);
-            Candles = new CandlesImp(CCRestClient, _cache, _logger);
+            Assets = new AssetsImp(CCRestClient, _cache, logger);
+            Rates = new RatesImp(CCRestClient, _cache, logger);
+            Exchanges = new ExchangesImp(CCRestClient, _cache, logger);
+            Markets = new MarketsImp(CCRestClient, _cache, logger);
+            Candles = new CandlesImp(CCRestClient, _cache, logger);
         }
 
         /// <summary>
