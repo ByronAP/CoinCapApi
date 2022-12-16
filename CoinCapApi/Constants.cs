@@ -15,6 +15,11 @@ namespace CoinCapApi
         public static string API_BASE_URL = "https://api.coincap.io";
 
         /// <summary>
+        /// The websocket API base URL.
+        /// </summary>
+        public static string API_WS_BASE_URL = "wss://ws.coincap.io";
+
+        /// <summary>
         /// The API version.
         /// </summary>
         public static readonly uint API_VERSION = 2;
