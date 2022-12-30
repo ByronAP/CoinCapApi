@@ -4,10 +4,10 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.1.1</Version>
+    <Version>2.0.1.2</Version>
     <Authors>ByronAP</Authors>
-    <AssemblyVersion>2.0.1.1</AssemblyVersion>
-    <FileVersion>2.0.1.1</FileVersion>
+    <AssemblyVersion>2.0.1.2</AssemblyVersion>
+    <FileVersion>2.0.1.2</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <AnalysisLevel>latest-recommended</AnalysisLevel>
